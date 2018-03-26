@@ -1,5 +1,6 @@
 pipeline:
   publish-image-to-quay:
+    group: publish
     image: plugins/docker
     mirror: https://mirror.gcr.io
     registry: quay.io
@@ -14,6 +15,19 @@ pipeline:
     tags: [ "${DRONE_BRANCH/master/latest}", "${ORCHESTRATOR_VERSION}-r${DRONE_BUILD_NUMBER}" ]
     when:
       event: push
+
+  publish-helm-chart:
+    group: publish
+    image: presslabs/kluster-toolbox
+    pull: true
+    commands:
+      - helm package charts/orchestrator
+      - CHART="$(basename *.tgz)" ; MESSAGE="Publish $(basename $CHART .tgz)"
+      - GH_USER=presslabs-bot /usr/local/bin/gh-put-file.sh presslabs/docs "$CHART" "docs/$CHART" "$MESSAGE"
+    secrets:
+      - GH_PASSWORD
+    when:
+      branch: master
 
 matrix:
   include:
