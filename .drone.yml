@@ -1,0 +1,20 @@
+pipeline:
+  publish-image-to-quay:
+    image: plugins/docker
+    mirror: https://mirror.gcr.io
+    registry: quay.io
+    repo: quay.io/presslabs/orchestrator
+    auto_tag: false
+    username: presslabs+drone
+    secrets:
+      - source: QUAY_TOKEN
+        target: DOCKER_PASSWORD
+    build_args:
+      - ORCHESTRATOR_VERSION=${ORCHESTRATOR_VERSION}
+    tags: [ "${DRONE_BRANCH/master/latest}", "${ORCHESTRATOR_VERSION}-r${DRONE_BUILD_NUMBER}" ]
+    when:
+      event: push
+
+matrix:
+  include:
+    - ORCHESTRATOR_VERSION: v3.0.9
