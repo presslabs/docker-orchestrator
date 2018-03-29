@@ -18,12 +18,14 @@ pipeline:
 
   publish-helm-chart:
     group: publish
-    image: presslabs/kluster-toolbox
+    image: quay.io/presslabs/kluster-toolbox
     pull: true
+    environment:
+      - GH_USER=presslabs-bot
     commands:
       - helm package charts/orchestrator
       - CHART="$(basename *.tgz)" ; MESSAGE="Publish $(basename $CHART .tgz)"
-      - GH_USER=presslabs-bot /usr/local/bin/gh-put-file.sh presslabs/charts "$CHART" "docs/$CHART" "$MESSAGE"
+      - /usr/local/bin/gh put --skip-existing -m "$MESSAGE" "$CHART" "presslabs/charts/docs/"
     secrets:
       - GH_PASSWORD
     when:
