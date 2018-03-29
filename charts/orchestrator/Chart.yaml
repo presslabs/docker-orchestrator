@@ -5,7 +5,7 @@ keywords:
   - mysql
   - percona
   - orchestrator
-version: 0.1.0
+version: 0.1.1
 home: https://github.com/github/orchestrator
 sources:
   - https://github.com/github/orchestrator.git

@@ -9,7 +9,11 @@
 {{- $_ := set $conf "RaftEnabled" true }}
 {{- $_ := set $conf "RaftDataDir" "/var/lib/orchestrator" }}
 {{- $_ := set $conf "RaftBind" (printf "{{ .Env.HOSTNAME }}.%s-headless" $fullname) }}
+{{- if eq 1 $replicas -}}
+{{- $_ := set $conf "RaftNodes" (list) }}
+{{- else -}}
 {{- $_ := set $conf "RaftNodes" $raftNodes }}
+{{- end -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
