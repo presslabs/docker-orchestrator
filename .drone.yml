@@ -33,4 +33,4 @@ pipeline:
 
 matrix:
   include:
-    - ORCHESTRATOR_VERSION: v3.0.9
+    - ORCHESTRATOR_VERSION: v3.0.11
