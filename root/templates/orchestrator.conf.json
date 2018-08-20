@@ -3,5 +3,6 @@
   "ListenAddress": ":3000",
   "BackendDB": "sqlite",
   "SQLite3DataFile": "/var/lib/orchestrator/orc.db",
-  "MySQLTopologyCredentialsConfigFile": "/etc/orchestrator/orc-topology.cnf"
+  "MySQLTopologyCredentialsConfigFile": "/etc/orchestrator/orc-topology.cnf",
+  "DiscoverByShowSlaveHosts": {{ default .Env.ORC_USE_SHOW_SLAVES "false" | lower }}
 }
