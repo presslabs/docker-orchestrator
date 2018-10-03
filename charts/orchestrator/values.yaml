@@ -6,6 +6,10 @@ nodeSelector: []
 tolerations: []
 resources: {}
 
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
+
 ## nodeAffinity settings
 # nodeAffinity:
 #   requiredDuringSchedulingIgnoredDuringExecution:
