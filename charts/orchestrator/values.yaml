@@ -1,4 +1,4 @@
-replicas: 3
+replicas: 1
 image: quay.io/presslabs/orchestrator:v3.0.12-r25
 imagePullPolicy: IfNotPresent
 
@@ -37,7 +37,7 @@ persistence:
   ##
   # storageClass: "-"
   accessMode: "ReadWriteOnce"
-  size: 100Mi
+  size: 1Gi
 
 service:
   type: ClusterIP
