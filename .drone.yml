@@ -30,7 +30,8 @@ pipeline:
       - GH_PASSWORD
     when:
       branch: master
+      event: push
 
 matrix:
   include:
-    - ORCHESTRATOR_VERSION: v3.0.12
+    - ORCHESTRATOR_VERSION: v3.0.13
