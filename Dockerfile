@@ -2,7 +2,7 @@ FROM golang:1.9-alpine as builder
 RUN set -ex \
     && apk add --no-cache \
         bash gcc git musl-dev openssl rsync
-ARG ORCHESTRATOR_VERSION=v3.0.12
+ARG ORCHESTRATOR_VERSION=v3.0.14
 ARG ORCHESTRATOR_REPO=https://github.com/github/orchestrator.git
 RUN set -ex \
     && mkdir -p $GOPATH/src/github.com/github/orchestrator \

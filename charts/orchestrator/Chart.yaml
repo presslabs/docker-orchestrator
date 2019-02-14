@@ -1,7 +1,7 @@
 apiVersion: v1
 name: orchestrator
-version: 0.1.5
-appVersion: 3.0.13
+version: 0.1.6
+appVersion: 3.0.14
 description: A Helm chart for github's mysql orchestrator
 keywords:
   - mysql

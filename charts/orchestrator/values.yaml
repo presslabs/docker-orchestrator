@@ -1,5 +1,5 @@
 replicas: 1
-image: quay.io/presslabs/orchestrator:v3.0.13-r29
+image: quay.io/presslabs/orchestrator:v3.0.14-r37
 imagePullPolicy: IfNotPresent
 
 nodeSelector: []
