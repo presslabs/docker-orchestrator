@@ -60,3 +60,5 @@ topologyUser: orchestrator
 #   - RaftNodes The statefullset members
 orchestratorConf:
   Debug: false
+
+podSecurityPolicy: false

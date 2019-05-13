@@ -1,0 +1,15 @@
+{{- if .Values.podSecurityPolicy }}
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ template "orchestrator.fullname" . }}
+roleRef:
+  kind: Role
+  name: {{ template "orchestrator.fullname" . }}
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+# Authorize specific service accounts:
+- kind: ServiceAccount
+  name: {{ template "orchestrator.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+{{- end }}
