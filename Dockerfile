@@ -20,7 +20,7 @@ RUN set -ex \
 FROM alpine:3.7
 
 # Create a group and user
-RUN addgroup -S orchestrator && adduser -S orchestrator -G orchestrator
+RUN addgroup -g 777 orchestrator && adduser -u 777 -g 777 -S orchestrator
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN set -ex \
@@ -30,13 +30,13 @@ RUN set -ex \
         tar \
         openssl \
     && mkdir /etc/orchestrator /var/lib/orchestrator \
-    && chown -R orchestrator:orchestrator /etc/orchestrator /var/lib/orchestrator \
+    && chown -R 777:777 /etc/orchestrator /var/lib/orchestrator \
     && wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz -O- | \
         tar -C /usr/local/bin -xzv
 
-USER orchestrator
+USER 777
 COPY --from=builder /go/src/github.com/github/orchestrator/bin/ /usr/local/orchestrator/
-COPY --chown=orchestrator:orchestrator root/ /
+COPY --chown=777:777 root/ /
 
 EXPOSE 3000 10008
 
