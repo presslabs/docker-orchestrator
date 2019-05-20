@@ -1,5 +1,5 @@
 replicas: 1
-image: quay.io/presslabs/orchestrator:v3.0.14-r37
+image: quay.io/presslabs/orchestrator:v3.0.14-r46
 imagePullPolicy: IfNotPresent
 
 nodeSelector: []
@@ -61,4 +61,8 @@ topologyUser: orchestrator
 orchestratorConf:
   Debug: false
 
-podSecurityPolicy: false
+podSecurityPolicy:
+  enabled: false
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
+    seccomp.security.alpha.kubernetes.io/defaultProfileName: 'docker/default'

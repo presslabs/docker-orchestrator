@@ -54,6 +54,8 @@ spec:
       tolerations:
         {{- toYaml .Values.tolerations | indent 8 | printf "\n%s" }}
       {{- end }}
+      securityContext:
+        fsGroup: 777
       containers:
         - name: orchestrator
           image: {{ .Values.image }}

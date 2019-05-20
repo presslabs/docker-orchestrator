@@ -1,0 +1,18 @@
+apiVersion: skaffold/v1beta7
+kind: Config
+build:
+  artifacts:
+  - image: quay.io/presslabs/orchestrator
+    docker:
+      dockerfile: Dockerfile
+      buildArgs:
+        expire: 2d
+  local:
+    push: true
+deploy:
+  helm:
+    releases:
+    - name: orc-test
+      chartPath: charts/orchestrator
+      values:
+        image: quay.io/presslabs/orchestrator
