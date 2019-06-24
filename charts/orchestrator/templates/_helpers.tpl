@@ -27,6 +27,6 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- $fullname := include "orchestrator.fullname" . -}}
 {{- $replicas := int .Values.replicas -}}
 {{- range $i := until $replicas -}}
-{{ $fullname }}-{{ $i }}.{{ $fullname }}-headless{{- if lt $i (sub $replicas 1) }},{{ end }}
+{{ $fullname }}-{{ $i }}-svc{{- if lt $i (sub $replicas 1) }},{{ end }}
 {{- end -}}
 {{- end -}}
