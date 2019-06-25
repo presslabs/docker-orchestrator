@@ -42,7 +42,7 @@ spec:
     selector:
         app: {{ template "orchestrator.fullname" . }}
     ports:
-    - name: web
+    - name: http
       port: {{ .Values.service.port }}
       protocol: TCP
       targetPort: 3000
